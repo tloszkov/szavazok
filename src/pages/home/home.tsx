@@ -95,7 +95,7 @@ function Home() {
 <Card className="card">
       <CardHeader className="cardHeader">Közigazgatási egység: Székelykeresztúr</CardHeader>
       <CardContent className="cardContent">
-            Sorszám 80.
+            Sorszám 81.
       </CardContent>
       <CardContent className="cardContent">
       Szavazóhelység székhelye: Fiatfalvi Családtervezési Központ, Fiatfalva utca 188 szám
