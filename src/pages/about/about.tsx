@@ -3,10 +3,8 @@ function About() {
 
   return (
     <>
-    <div className="card">
-
        <h1>Egy Esély a Közösségért Egyesület</h1>
-    
+    <div className="voting">
     <h2>Mi a célunk?</h2>
     <p>
         Célunk, hogy a fiataloknak lehetőséget biztosítsunk a tanulásra, növekedésre, és a közösségükre pozitív hatást gyakorló értelmes projektekben való részvételre.
