@@ -25,7 +25,7 @@ function Footer() {
                 <img src={FacebookLogo} width={80} height={80} alt="Facebook Logo"/> 
             </a>
             <a href="https://www.instagram.com/ospc.egyesulet/">
-                <img src={InstagramLogo} width={80} height={80} alt="Instagram Logo"/> 
+                <img src={InstagramLogo} width={65} height={80} alt="Instagram Logo"/> 
             </a>
             </CardContent>
           </Card>
