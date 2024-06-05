@@ -24,7 +24,7 @@ function Home() {
 
     {/*76  Szekelykeresztur */}
     <Card className="card">
-      <CardContent> <img width={500} src="../../public/petofi.jpg" alt="szekelykeresztur petofi sandor timafalva"></img> </CardContent>
+      <CardContent> <img width={500} src="public/petofi.jpg" alt="szekelykeresztur petofi sandor timafalva"></img> </CardContent>
       <CardHeader className="cardHeader">Közigazgatási egység: Székelykeresztúr</CardHeader>
       <CardContent className="cardContent">
             Sorszám 76.
@@ -39,7 +39,7 @@ function Home() {
 
  {/*77  Szekelykeresztur */}
  <Card className="card">
-      <CardContent> <img width={500} src="../../public/PetofiKriza.jpg" alt="szekelykeresztur petofi sandor kriza janos"></img> </CardContent>
+      <CardContent> <img width={500} src="public/PetofiKriza.jpg" alt="szekelykeresztur petofi sandor kriza janos"></img> </CardContent>
       <CardHeader className="cardHeader">Közigazgatási egység: Székelykeresztúr</CardHeader>
       <CardContent className="cardContent">
             Sorszám 77.
@@ -54,7 +54,7 @@ function Home() {
 
 {/*78  Szekelykeresztur */}
 <Card className="card">
-      <CardContent> <img width={500} src="../../public/KatolikusPlebania.png" alt="szekelykeresztur katolikus plebania"></img> </CardContent>
+      <CardContent> <img width={500} src="public/KatolikusPlebania.png" alt="szekelykeresztur katolikus plebania"></img> </CardContent>
       <CardHeader className="cardHeader">Közigazgatási egység: Székelykeresztúr</CardHeader>
       <CardContent className="cardContent">
             Sorszám 78.
@@ -69,7 +69,7 @@ function Home() {
 
     {/*79  Szekelykeresztur */}
 <Card className="card">
-      <CardContent> <img width={500} src="../../public/vallalkozok.jpg" alt="szekelykeresztur vallalkozok haza kriza janos"></img> </CardContent>
+      <CardContent> <img width={500} src="public/vallalkozok.jpg" alt="szekelykeresztur vallalkozok haza kriza janos"></img> </CardContent>
       <CardHeader className="cardHeader">Közigazgatási egység: Székelykeresztúr</CardHeader>
       <CardContent className="cardContent">
             Sorszám 79.
@@ -84,7 +84,7 @@ function Home() {
 
     {/*80  Szekelykeresztur */}
 <Card className="card">
-<CardContent> <img width={500} src="../../public/BerdeMozes.jpg" alt="szekelykeresztur berde mozes orban balazs"></img> </CardContent>
+<CardContent> <img width={500} src="public/BerdeMozes.jpg" alt="szekelykeresztur berde mozes orban balazs"></img> </CardContent>
       <CardHeader className="cardHeader">Közigazgatási egység: Székelykeresztúr</CardHeader>
       <CardContent className="cardContent">
             Sorszám 80.
