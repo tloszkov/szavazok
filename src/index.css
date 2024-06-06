@@ -45,7 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  width: 17vw;
+  width: 30%;
 }
 button:hover {
   background-color: #535bf2;
@@ -89,12 +89,16 @@ button:focus-visible {
 }
 
 .card {
-  width: 100vh;
+  width: 80%;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px auto;
   padding: 20px;
+}
+
+img{
+  width: 90%;
 }
 
 .cardContent {
@@ -119,7 +123,7 @@ h1 {
 }
 
 .voting p {
-  width: 100vh;
+  width: 90%;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
