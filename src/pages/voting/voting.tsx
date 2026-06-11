@@ -1,67 +1,299 @@
+import { useState } from "react"
+import { Clock, FileText, Globe, CheckCircle, Info, Landmark, PhoneCall, CheckSquare } from "lucide-react"
 
 function Voting() {
+  const [activeTab, setActiveTab] = useState<"procedure" | "ballots" | "ep">("procedure")
+
+  const steps = [
+    {
+      title: "Nyitvatartás",
+      time: "07:00 - 22:00",
+      desc: "A szavazóhelyiségek reggel 7 órakor nyitnak és este 10 órakor zárnak. Ha a záráskor még sorban állsz, 23:59-ig leadhatod a szavazatod.",
+      icon: Clock,
+      color: "border-indigo-500/30 text-indigo-400"
+    },
+    {
+      title: "Azonosítás",
+      time: "Lépés 1",
+      desc: "Személyazonosító okmány felmutatása szükséges. Kizárólag abban a szavazókörzetben szavazhatsz, ahová a bejelentett lakcímed vagy a legalább 60 napos ideiglenes lakcímed szól.",
+      icon: CheckSquare,
+      color: "border-emerald-500/30 text-emerald-400"
+    },
+    {
+      title: "Szavazólapok átvétele",
+      time: "Lépés 2",
+      desc: "Öt darab szavazólapot kapsz a bizottságtól, valamint a hivatalos pecsétet.",
+      icon: FileText,
+      color: "border-blue-500/30 text-blue-400"
+    },
+    {
+      title: "Voksolás a fülkében",
+      time: "Lépés 3",
+      desc: "A fülkében nyomd rá a pecsétet a kiválasztott jelöltekre/listákra. Hajtsd össze a lapokat úgy, hogy a pecsét kívül legyen (hitelesítés), és helyezd őket a megfelelő urnákba.",
+      icon: CheckCircle,
+      color: "border-purple-500/30 text-purple-400"
+    },
+    {
+      title: "Bélyegző visszaadása",
+      time: "Lépés 4",
+      desc: "A szavazás befejeztével kötelező visszaadni a pecsétet és aláírni a választási névjegyzéket.",
+      icon: Info,
+      color: "border-amber-500/30 text-amber-400"
+    }
+  ]
+
+  const ballots = [
+    {
+      name: "EP-jelöltlisták",
+      desc: "Európai Parlamenti képviselők megválasztása a következő 5 éves ciklusra."
+    },
+    {
+      name: "Polgármesterjelöltek",
+      desc: "Székelykeresztúr polgármesterének közvetlen megválasztása."
+    },
+    {
+      name: "Helyi tanácsosi jelöltlisták",
+      desc: "A helyi döntéshozó önkormányzati testület (tanács) összeállításának meghatározása."
+    },
+    {
+      name: "Megyeitanácselnök-jelöltek",
+      desc: "Hargita megye tanácselnökének közvetlen megválasztása."
+    },
+    {
+      name: "Megyei tanácsosi jelöltlisták",
+      desc: "A megyei szintű fejlesztéseket koordináló tanácsosok megválasztása."
+    }
+  ]
+
+  const epDecisionAreas = [
+    { title: "Belső piac és kereskedelem", desc: "Döntések az áruk, szolgáltatások, személyek és tőke szabad mozgásáról, valamint az EU nemzetközi kereskedelmi megállapodásairól." },
+    { title: "Környezetvédelem & klímavédelem", desc: "A klímaváltozás elleni küzdelem, fenntartható fejlesztések és energiahatékonysági előírások." },
+    { title: "Mezőgazdaság & vidékfejlesztés", desc: "Az EU közös agrárpolitikájának kialakítása, mezőgazdasági és termelői támogatások elosztása." },
+    { title: "Szociális és munkajogi kérdések", desc: "A munkavállalói jogok védelme, munkaidő szabályozása és munkavédelmi előírások." },
+    { title: "Biztonság és védelem", desc: "Közös terrorizmus elleni küzdelem, határvédelem és a tagállami biztonsági együttműködések megerősítése." },
+    { title: "Digitális átállás", desc: "A digitális piacok szabályozása, adatvédelmi törvények (pl. GDPR) és az új technológiák keretrendszere." }
+  ]
 
   return (
-    <>
-      <h1>Szavazás</h1>
-      <div className="voting">
-        <p>A helyhatósági választások <strong>június 9</strong>-én, reggel <strong>7 órakor kezdődnek</strong> és <strong>este 10 órakor zárulnak</strong>. Azok a választópolgárok, akik a zárás időpontjában a szavazóhelyiségben tartózkodnak vagy a sorban állnak, még 23:59-ig leadhatják voksaikat.</p>
-        <p>A választáson csak abban a <strong>szavazókörzetben lehet szavazni</strong>, amelyhez a választópolgár állandó vagy legalább 60 nappal korábban bejelentett ideiglenes lakcímmel rendelkezik. A <strong>szavazóhelyiségben</strong> személyazonosító okmány felmutatásával <strong>öt szavazólapot</strong> kapnak a választók: egyet az <strong>EP-jelöltlistákkal</strong>, egyet a <strong>megyeitanácselnök-jelöltekkel</strong>, egyet a <strong>megyei tanácsosi jelöltlistákkal</strong>, egyet a <strong>polgármesterjelöltekkel</strong> és egyet a <strong>helyi tanácsosi jelöltlistákkal</strong>.</p>
-        <p>Minden szavazólapra rá kell nyomni a <strong>pecsétet</strong>, amihez a szavazófülkében bélyegzőpárna is rendelkezésre áll. A szavazólapokat <strong>összehajtva</strong>, a pecsét láthatóságát biztosítva kell az urnákba helyezni. A szavazóknak a <strong>pecsétet</strong> vissza kell adniuk, mielőtt elhagyják a szavazóhelyiséget.</p>
-        <p><strong>Mozgóurna</strong> igényelhető betegség esetén, akár a választások napján is, de lehetőség szerint 14 óráig.</p>
-        <p>A szavazás <strong>lezárulta után</strong> a körzeti választási iroda tagjai felbontják az urnákat. A <strong>szavazatszámlálásnál</strong> jelen lehetnek megfigyelők, a média akkreditált képviselői és a választókerületben induló jelöltek. A szavazatszámlálást és az eredmények rögzítését a szavazókörzet táblagépének kamerájával rögzítik.</p>
-        <p>A jegyzőkönyveket aláírják, lefényképezik és feltöltik az Állandó Választási Hatóság (AEP) alkalmazásába, így az eredmények szinte azonnal láthatóvá válnak a hatóság honlapján. A feltöltött adatokat a későbbiekben csak újraszámlálást vagy hiba kijavítását elrendelő határozattal lehet módosítani, amelyet szintén közzétesznek az AEP honlapján.</p>
+    <div className="container mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      {/* Page Header */}
+      <div className="text-center max-w-3xl mx-auto mb-12 animate-in fade-in slide-in-from-top-4 duration-300">
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+          Szavazási Tudnivalók
+        </h1>
+        <p className="text-lg text-slate-400">
+          Mindent, amit a helyhatósági és az Európai Parlamenti választások menetéről tudni érdemes.
+        </p>
+        <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-emerald-500 rounded-full mx-auto mt-6"></div>
       </div>
-      <div className="voting">
-      <h1>Szavazási információk 2024</h1>
-    <p>A választáson csak abban a szavazókörzetben lehet szavazni, amelyhez a választópolgár állandó vagy legalább 60 nappal korábban bejelentett ideiglenes lakcímmel rendelkezik. A szavazóhelyiségben személyazonosító okmány felmutatásával öt szavazólapot kapnak a választók:</p>
-        <p>egy szavazólap az Európai Parlamenti (EP) jelöltlistákkal,</p>
-        <p>egy szavazólap a megyeitanácselnök-jelöltekkel,</p>
-        <p>egy szavazólap a megyei tanácsosi jelöltlistákkal,</p>
-        <p>egy szavazólap a polgármesterjelöltekkel,</p>
-        <p>egy szavazólap a helyi tanácsosi jelöltlistákkal.</p>
 
-    <div className="voting">
-    <h1>Helyhatósági és megyei választások fontossága</h1>
-    <h2>Helyhatósági választások fontossága</h2>
-        <p><strong>Közvetlen befolyás a helyi ügyekre:</strong> A helyhatósági választások során megválasztott képviselők közvetlenül felelnek a helyi ügyekért, például az infrastruktúra fejlesztéséért, az oktatási intézmények fenntartásáért, a közbiztonságért és a helyi gazdaság élénkítéséért. Ezek a döntések közvetlenül befolyásolják a lakosok mindennapi életét.</p>
-        <p><strong>Közszolgáltatások minősége:</strong> A helyi önkormányzatok felelősek a közszolgáltatások, például a hulladékkezelés, a közlekedési rendszer, az egészségügyi ellátás és a közművek biztosításáért. A választások során a polgárok olyan vezetőket választhatnak, akik a legjobban képviselik az érdekeiket ezen a területen.</p>
-        <p><strong>Közösségi fejlődés és összetartás:</strong> A helyi vezetők fontos szerepet játszanak a közösségi események és programok szervezésében, amelyek hozzájárulnak a közösségi összetartás és identitás erősítéséhez.</p>
+      {/* Navigation Tabs */}
+      <div className="flex justify-center mb-10">
+        <div className="inline-flex rounded-xl bg-slate-900/60 border border-slate-800 p-1 backdrop-blur-sm">
+          <button
+            onClick={() => setActiveTab("procedure")}
+            className={`flex items-center space-x-2 px-4 sm:px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 w-auto border-0 ${
+              activeTab === "procedure"
+                ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                : "text-slate-400 hover:text-white bg-transparent"
+            }`}
+          >
+            <Clock className="h-4 w-4" />
+            <span>Szavazás Menete</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("ballots")}
+            className={`flex items-center space-x-2 px-4 sm:px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 w-auto border-0 ${
+              activeTab === "ballots"
+                ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                : "text-slate-400 hover:text-white bg-transparent"
+            }`}
+          >
+            <FileText className="h-4 w-4" />
+            <span>Az 5 Szavazólap</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("ep")}
+            className={`flex items-center space-x-2 px-4 sm:px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 w-auto border-0 ${
+              activeTab === "ep"
+                ? "bg-indigo-600 text-white shadow-md shadow-indigo-600/20"
+                : "text-slate-400 hover:text-white bg-transparent"
+            }`}
+          >
+            <Globe className="h-4 w-4" />
+            <span>EP Képviselet</span>
+          </button>
+        </div>
+      </div>
 
-    <h2>Megyei szintű választások fontossága</h2>
-        <p><strong>Regionális fejlesztési tervek:</strong> A megyei szintű vezetők felelnek a nagyobb léptékű fejlesztési tervekért és projektekért, amelyek az egész megyére kiterjednek. Ezek közé tartoznak az ipari parkok létrehozása, a közlekedési hálózatok fejlesztése és a turizmus ösztönzése.</p>
-        <p><strong>Közigazgatási hatékonyság:</strong> A megyei önkormányzatok koordinálják a különböző helyi önkormányzatok tevékenységeit, biztosítva a hatékony közigazgatást és a források optimális felhasználását.</p>
-        <p><strong>Szociális és gazdasági egyenlőtlenségek csökkentése:</strong> A megyei önkormányzatoknak fontos szerepük van a szociális és gazdasági egyenlőtlenségek csökkentésében az egyes települések között. Támogatják a hátrányos helyzetű területek fejlesztését és a helyi gazdaság diverzifikálását.</p>
+      {/* Tab Contents */}
+      <div className="transition-all duration-300">
+        {/* TAB 1: PROCEDURE */}
+        {activeTab === "procedure" && (
+          <div className="space-y-10 animate-in fade-in duration-300">
+            {/* Timeline */}
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+              {steps.map((step, idx) => {
+                const Icon = step.icon
+                return (
+                  <div key={idx} className="relative bg-slate-900/40 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-755 transition-colors">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full">{step.time}</span>
+                      <h3 className="text-lg font-bold text-white mt-4 mb-2">{step.title}</h3>
+                      <p className="text-xs text-slate-450 leading-relaxed">{step.desc}</p>
+                    </div>
+                    <div className="mt-6 flex justify-end">
+                      <div className="p-2 bg-slate-950 rounded-lg border border-slate-800">
+                        <Icon className="h-5 w-5 text-indigo-450" />
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Banner info on Mobile Ballot box & Post-voting */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-indigo-950/20 to-slate-900/40 border border-indigo-900/20 rounded-2xl p-6 md:p-8 flex items-start space-x-4">
+                <div className="p-3 bg-indigo-500/10 rounded-xl text-indigo-400 shrink-0">
+                  <PhoneCall className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-2">Mozgóurna igénylés</h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    Betegség vagy mozgáskorlátozottság esetén mozgóurna igényelhető. Az igénylést akár a választások napján is be lehet nyújtani, de lehetőség szerint <strong>14:00 óráig</strong> érdemes megtenni, a szükséges igazoló dokumentumokkal együtt.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-emerald-950/20 to-slate-900/40 border border-emerald-900/20 rounded-2xl p-6 md:p-8 flex items-start space-x-4">
+                <div className="p-3 bg-emerald-500/10 rounded-xl text-emerald-400 shrink-0">
+                  <CheckCircle className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-2">Digitális biztonság és nyilvánosság</h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">
+                    A szavazóhelyiség lezárása után a jegyzőkönyveket lefényképezik és feltöltik az AEP alkalmazásába, így az eredmények szinte azonnal láthatóvá válnak. A szavazatszámlálást kamerák rögzítik a választási folyamat teljes átláthatósága érdekében.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 2: BALLOTS */}
+        {activeTab === "ballots" && (
+          <div className="space-y-12 animate-in fade-in duration-300">
+            {/* The 5 ballots list */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-6 text-center">Az öt darab szavazólap, amit a kezedbe kapsz</h2>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+                {ballots.map((ballot, idx) => (
+                  <div key={idx} className="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 hover:border-indigo-500/20 transition-all duration-200 flex flex-col justify-between">
+                    <div>
+                      <div className="h-8 w-8 rounded-lg bg-indigo-600/10 text-indigo-400 font-bold flex items-center justify-center text-sm border border-indigo-500/10 mb-4">
+                        {idx + 1}
+                      </div>
+                      <h3 className="text-base font-bold text-white mb-2">{ballot.name}</h3>
+                      <p className="text-xs text-slate-450 leading-relaxed">{ballot.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Importance of local vs regional level */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+              <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 md:p-8">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-indigo-500/10 rounded-lg text-indigo-400">
+                    <Landmark className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white">Helyhatósági Választások Fontossága</h3>
+                </div>
+                <ul className="space-y-4 text-sm text-slate-350">
+                  <li className="leading-relaxed">
+                    <strong className="text-white block mb-0.5">Közvetlen befolyás a helyi ügyekre:</strong> A helyben megválasztott képviselők felelnek Székelykeresztúr infrastrukturális fejlesztéseiért, az oktatási intézmények fenntartásáért és a helyi gazdaság élénkítéséért.
+                  </li>
+                  <li className="leading-relaxed">
+                    <strong className="text-white block mb-0.5">Közszolgáltatások minősége:</strong> Az önkormányzatok hatáskörébe tartozik a hulladékgazdálkodás, a közművek, a helyi közlekedés és a közösségi terek gondozása.
+                  </li>
+                  <li className="leading-relaxed">
+                    <strong className="text-white block mb-0.5">Közösségépítés:</strong> A helyi vezetők programjai közvetlenül támogatják a civil szervezeteket és kulturális kezdeményezéseket.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 md:p-8">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
+                    <Landmark className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white">Megyei Választások Fontossága</h3>
+                </div>
+                <ul className="space-y-4 text-sm text-slate-350">
+                  <li className="leading-relaxed">
+                    <strong className="text-white block mb-0.5">Regionális fejlesztési tervek:</strong> A megyei tanács határozza meg a nagyobb léptékű beruházásokat, például az ipari parkok létrehozását, megyei utak korszerűsítését és turisztikai projekteket.
+                  </li>
+                  <li className="leading-relaxed">
+                    <strong className="text-white block mb-0.5">Közigazgatási koordináció:</strong> Segíti és összehangolja a különböző kistelepülési önkormányzatok munkáját, biztosítva a források optimális elosztását.
+                  </li>
+                  <li className="leading-relaxed">
+                    <strong className="text-white block mb-0.5">Egyenlőtlenségek csökkentése:</strong> Fontos szerepe van a hátrányos helyzetű övezetek felzárkóztatásában és szociális támogatási hálózatok működtetésében.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: EP */}
+        {activeTab === "ep" && (
+          <div className="space-y-10 animate-in fade-in duration-300">
+            {/* Intro to EP */}
+            <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8">
+              <div className="shrink-0 p-6 bg-indigo-600/10 text-indigo-400 rounded-2xl border border-indigo-500/20">
+                <Globe className="h-16 w-16" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2">Miért fontos az Európai Parlament?</h3>
+                <p className="text-sm text-slate-300 leading-relaxed mb-4">
+                  Az Európai Parlament az egyetlen közvetlenül választott uniós testület, amely közvetlenül képviseli az EU-s állampolgárokat a jogalkotási és döntési folyamatokban. Románia lakosaként az itt leadott szavazatok határozzák meg, hogy kik képviselik az ország (és Székelyföld) érdekeit az elkövetkező 5 évben Brüsszelben és Strasbourgban.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-400 pt-4 border-t border-slate-800">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-emerald-500" />
+                    <span>Jogszabályalkotás</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-emerald-500" />
+                    <span>EU-s költségvetés elfogadása</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="h-4 w-4 text-emerald-500" />
+                    <span>Bizottság demokratikus ellenőrzése</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Decision Areas */}
+            <div>
+              <h3 className="text-lg font-bold text-white mb-6 text-center">Főbb döntési területek</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {epDecisionAreas.map((area, idx) => (
+                  <div key={idx} className="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/20 transition-all duration-200">
+                    <h4 className="text-sm font-bold text-white mb-2">{area.title}</h4>
+                    <p className="text-xs text-slate-450 leading-relaxed">{area.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
-
-      </div>
-      <h1>Mi másra kell szavazni 2024-ben Romániában június 9-én?</h1>
-      <div className="voting">
-        <p>2024. június 9-én Romániában az Európai Parlamenti választásokat tartják. Ezek a választások fontosak, mert a szavazók dönthetnek arról, hogy kik képviseljék Romániát az Európai Parlamentben a következő öt évben. Az Európai Parlament döntéshozó testületként kulcsszerepet játszik az Európai Unió jogszabályainak meghozatalában, és így a választás eredménye befolyásolja, hogy milyen irányban fejlődik az EU és milyen politikai döntések születnek a jövőben.</p>
-        <p>A választásokon való részvétel lehetőséget ad a polgároknak, hogy kifejezzék véleményüket az EU jövőjéről és arról, hogy milyen politikai képviselőket szeretnének látni az Európai Parlamentben.</p>
-      </div>
-
-      <h1>Az Európai Parlamenti képviselet fontossága</h1>
-        <h2>Miért fontos az Európai Parlament?</h2>
-          <div className="voting">
-            <p className="voting"><strong>Törvényhozás:</strong> Az Európai Parlament részt vesz az EU jogszabályainak elfogadásában. Az Európai Bizottság által javasolt törvényeket az Európai Parlament és az Európai Unió Tanácsa együtt tárgyalja és fogadja el. Ez azt jelenti, hogy a parlamenti képviselők szerepe kulcsfontosságú a jogszabályalkotás folyamatában.</p>
-            <p className="voting"><strong>Költségvetés:</strong> Az Európai Parlamentnek jelentős szerepe van az EU éves költségvetésének elfogadásában. A képviselők döntik el, hogy milyen célokra és hogyan költsék el az EU pénzügyi forrásait, beleértve a támogatásokat, kutatás-fejlesztést, kohéziós alapokat és más programokat.</p>
-            <p className="voting"><strong>Demokratikus ellenőrzés:</strong> Az Európai Parlament felügyeli az Európai Bizottság és az EU más intézményeinek munkáját, biztosítva, hogy azok a polgárok érdekeit szem előtt tartva működjenek. A parlament vizsgálatokat folytathat és kérdéseket tehet fel a Bizottság tagjainak.</p>
-            <p className="voting"><strong>Képviselet és érdekképviselet:</strong> Az európai parlamenti képviselők közvetlenül az EU polgárai által választottak, így közvetlen képviseletet biztosítanak az uniós döntéshozatalban. Az egyes tagállamok polgárai ezáltal biztosítva vannak, hogy érdekeiket figyelembe veszik a döntések meghozatalakor.</p>
-          </div>
-
-        <h2>Az Európai Parlament döntési területei</h2>
-          <div className="voting">
-            <p><strong>Belső piac és kereskedelem:</strong> Döntések születnek az EU belső piacának működéséről, beleértve az áruk, szolgáltatások, személyek és tőke szabad mozgását. Továbbá, az Európai Parlament szerepet játszik az EU nemzetközi kereskedelmi megállapodásaiban is.</p>
-            <p><strong>Környezetvédelem és klímavédelem:</strong> Az Európai Parlament aktívan foglalkozik környezetvédelmi kérdésekkel, beleértve a klímaváltozás elleni küzdelmet, a fenntartható fejlődést és az energiahatékonyságot.</p>
-            <p><strong>Mezőgazdaság és vidékfejlesztés:</strong> Döntéseket hoznak az EU közös agrárpolitikájáról, amely befolyásolja a mezőgazdasági támogatásokat és a vidéki területek fejlesztését.</p>
-            <p><strong>Szociális és munkajogi kérdések:</strong> Az Európai Parlament jogszabályokat fogad el a munkavállalók jogainak védelmében, beleértve a munkaidőt, a munkakörülményeket és a munkavállalók biztonságát.</p>
-            <p><strong>Biztonság és védelem:</strong> Az EU biztonsági és védelmi politikáinak kialakításában is részt vesz az Európai Parlament, beleértve a terrorizmus elleni küzdelmet és a közös védelem megerősítését.</p>
-            <p><strong>Digitális átállás:</strong> Döntéseket hoznak a digitális piac szabályozásáról, az adatvédelemről és az új technológiák bevezetéséről.</p>
-          </div>
-    </>
   )
 }
-
 
 export default Voting
